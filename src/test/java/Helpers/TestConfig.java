@@ -6,6 +6,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -192,5 +194,17 @@ public class TestConfig {
         }
         System.out.println("Removing file or directory: " + dir.getName());
         return dir.delete();
+    }
+
+    public static void sendFailedTestsScreenshotViaGmail(String screenshotAddress) throws AddressException, MessagingException {
+        JavaEmail javaEmail = new JavaEmail();
+
+        javaEmail.setMailServerProperties();
+        javaEmail.createEmailMessage(screenshotAddress);
+        javaEmail.sendEmail();
+    }
+
+    public static void zipImagesFromResultsFolder(){
+        CompressToZip.compress();
     }
 }

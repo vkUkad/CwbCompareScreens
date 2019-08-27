@@ -13,6 +13,7 @@ import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 import javax.imageio.ImageIO;
+import javax.mail.MessagingException;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 import static Helpers.AShotFoldersConfiguration.actualDir;
 import static Helpers.AShotFoldersConfiguration.expectedDir;
+import static Helpers.TestConfig.sendFailedTestsScreenshotViaGmail;
 
 public class CS {
 
@@ -35,7 +37,7 @@ public class CS {
         return screenshot;
     }
 
-    public static void createResultImage(String actual, String expected, String difference, String url, String testId) throws IOException {
+    public static void createResultImage(String actual, String expected, String difference, String url, String testId) throws IOException, MessagingException {
         File file1 = new File(actual);
         File file2 = new File(expected);
         File file3 = new File(difference);
@@ -66,6 +68,7 @@ public class CS {
 
         File final_image = new File(AShotFoldersConfiguration.resultDir + "testID-" + testId + "_" + getResultScreenshotTitile(url) + dateFormat.format(date) + ".png"); // “png can also be used here”
         boolean final_Image_drawing = ImageIO.write(img, "png", final_image); //if png is used, write “png” instead “jpeg”
+        sendFailedTestsScreenshotViaGmail(AShotFoldersConfiguration.resultDir + "testID-" + testId + "_" + getResultScreenshotTitile(url) + dateFormat.format(date) + ".png");
         if (!final_Image_drawing) System.out.println("Problems drawing final image");
     }
 
@@ -139,7 +142,7 @@ public class CS {
         return diff;
     }
 
-    public static void checkIfPagesAreDifferent(ImageDiff diff, String url, String testId) throws IOException {
+    public static void checkIfPagesAreDifferent(ImageDiff diff, String url, String testId) throws IOException,MessagingException {
         if (diff.getDiffSize() > 16) {
             DateFormat dateFormat = new SimpleDateFormat("_yyyy_MM_dd_HH-mm-ss");
             Date date = new Date();

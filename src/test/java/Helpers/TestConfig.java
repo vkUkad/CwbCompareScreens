@@ -29,7 +29,7 @@ public class TestConfig {
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         //hotfix for Chrome 73
         setRootScreenshotsDir("C:\\UkadSiteTestScreens");
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\v.kelevich\\IdeaProjects\\UKADwebSiteTEsts\\Drivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         driver = new ChromeDriver(options);
         driver.manage().window().setSize(new Dimension(1936, 1056));
         Robot bot = new Robot();
@@ -178,12 +178,16 @@ public class TestConfig {
     public static boolean removeFolderWithObsoleteData(File dir) {
 
         if (dir.isDirectory()) {
-            File[] children = dir.listFiles();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = removeFolderWithObsoleteData(children[i]);
-                if (!success) {
-                    return false;
+            try {
+                File[] children = dir.listFiles();
+                for (int i = 0; i < children.length; i++) {
+                    boolean success = removeFolderWithObsoleteData(children[i]);
+                    if (!success) {
+                        return false;
+                    }
                 }
+            }catch (NullPointerException e){
+                System.out.println("Null pointer exception for 'children' dereference");
             }
         }
         System.out.println("Removing file or directory: " + dir.getName());

@@ -1331,8 +1331,6 @@ public class TestCompareScreens {
         CS.checkIfPagesAreDifferent(CS.getDifference(url.toString()), url.toString(), number+"");
     }
 
-
-
     @AfterTest
     public void doAfterTest() {
         closeBrowser();

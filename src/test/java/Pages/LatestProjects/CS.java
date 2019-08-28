@@ -88,6 +88,7 @@ public class CS {
     public static void removeElementsFromCreateExpectedScreensPages(String[] by) {
         for (int i = 0; i < by.length; i++) {
             String currentElement = by[i];
+            TestConfig.driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
             if (TestConfig.driver.findElements(By.xpath(currentElement)).size() != 0) {
                 RemoveElements.removePageElements(By.xpath(currentElement));
             }

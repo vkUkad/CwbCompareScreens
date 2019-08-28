@@ -10,6 +10,7 @@ public class RemoveElements extends TestConfig {
     public static void removePageElements(By by) {
         List<WebElement> elementsList = driver.findElements(by);
         for (WebElement element : elementsList) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
             ((JavascriptExecutor) driver).executeScript("arguments[0].remove();", element);
         }
     }

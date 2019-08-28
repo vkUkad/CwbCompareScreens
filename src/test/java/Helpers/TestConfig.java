@@ -165,7 +165,7 @@ public class TestConfig {
     }
 
     public static String[] elementsToRemove() {
-        String[] elements = new String[7];
+        String[] elements = new String[8];
         //Using Xpath
         elements[0] = "//div[@class='fullscreen-bg js-fullscreen-bg']";
         elements[1] = "//img[@src=\"https://cdn.ukad-group.com/media/2169/image1-1.gif?width=290.4761904761905&height=500\"]";
@@ -174,6 +174,7 @@ public class TestConfig {
         elements[4] = "//div[@class='fp-slidesContainer']";
         elements[5] = "//ul[@class='toc__list']";
         elements[6] = "//p[@class='toc__title']";
+        elements[7] = "//ul[@class='bib__module bib--hover bib--row-4 bib--square']";
         return elements;
     }
 

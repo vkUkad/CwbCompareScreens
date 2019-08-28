@@ -31,9 +31,8 @@ public class JavaEmail {
             MessagingException {
 
 
-
         String[] toEmails = {"vikentiy.kelevich@gmail.com",
-                //        "julia.peresunko@ukad-group.com"
+                "julia.peresunko@ukad-group.com"
         };
         String emailSubject = "There are broken markup pages on Ukad web site";
         String emailBody = "Please check the attachment";

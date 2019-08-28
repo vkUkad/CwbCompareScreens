@@ -37,7 +37,7 @@ public class CS {
         return screenshot;
     }
 
-    public static void createResultImage(String actual, String expected, String difference, String url, String testId) throws IOException, MessagingException {
+    public static void createResultImageAndSendEmailWithResult(String actual, String expected, String difference, String url, String testId) throws IOException, MessagingException {
         File file1 = new File(actual);
         File file2 = new File(expected);
         File file3 = new File(difference);
@@ -158,7 +158,7 @@ public class CS {
                     File(AShotFoldersConfiguration.diffDir + getDifferenceScreenshotTitle(url) + dateFormat.format(date) + "_testID-" + testId + ".png");
             ImageIO.write(diff.getMarkedImage(), "png", diffFile);
 
-            createResultImage(
+            createResultImageAndSendEmailWithResult(
                     actualScreenshotAddress,
                     expectedScreenshotAddress,
                     differenceScreenshotAddress,

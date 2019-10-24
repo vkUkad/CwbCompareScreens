@@ -24,6 +24,8 @@ public class JavaEmail {
         emailProperties.put("mail.smtp.port", emailPort);
         emailProperties.put("mail.smtp.auth", "true");
         emailProperties.put("mail.smtp.starttls.enable", "true");
+        emailProperties.put("mail.smtp.ssl.trust","smtp.gmail.com");
+
 
     }
 
@@ -32,9 +34,8 @@ public class JavaEmail {
 
 
         String[] toEmails = {"vikentiy.kelevich@gmail.com",
-                "julia.peresunko@ukad-group.com"
         };
-        String emailSubject = "There are broken markup pages on Ukad web site";
+        String emailSubject = "There are broken markup pages on Cowab web site";
         String emailBody = "Please check the attachment";
 
         mailSession = Session.getDefaultInstance(emailProperties, null);

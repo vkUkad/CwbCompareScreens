@@ -33,7 +33,7 @@ public class CS {
 
         TestConfig.driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         Screenshot screenshot = new AShot()
-                .shootingStrategy(ShootingStrategies.viewportPasting(1500))
+                .shootingStrategy(ShootingStrategies.viewportPasting(3000))
                 .takeScreenshot(TestConfig.driver);
         return screenshot;
     }
@@ -111,8 +111,8 @@ public class CS {
         ImageIO.write(screenshot.getImage(), "png", actualFile);
     }
 
-    public static void clickOkButton() {
-        WebElement btnOKfromCookiesArea = TestConfig.driver.findElement(By.cssSelector("button[class=\"cookies__button\"]"));
+    public static void clickInitialPopupButton(String element) {
+        WebElement btnOKfromCookiesArea = TestConfig.driver.findElement(By.cssSelector(element));
         if (btnOKfromCookiesArea.isDisplayed()) {
             btnOKfromCookiesArea.click();
         }
@@ -122,54 +122,58 @@ public class CS {
         for (int i = 0; i < by.length; i++) {
             String currentElement = by[i];
             TestConfig.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-            if (TestConfig.driver.findElements(By.xpath(currentElement)).size() != 0) {
-                RemoveElements.removePageElements(By.xpath(currentElement));
+            if (TestConfig.driver.findElements(By.cssSelector(currentElement)).size() != 0) {
+                RemoveElements.removePageElements(By.cssSelector(currentElement));
             }
         }
     }
 
     public static String getExpectedScreenshotTitle(String input) {
-        String name = input.replaceAll("https://www.ukad-group.com/", "") + "_expected_window.size-" + TestConfig.browserWindowSize();
+        String name = input.replaceAll("https://", "") + "_expected_window.size-" + TestConfig.browserWindowSize();
         name = name.replaceAll("/", "_");
+        name = name.replaceAll("\\?", "");
+
         return name;
     }
 
     public static String getActualScreenshotTitle(String input) {
-        String name = input.replaceAll("https://www.ukad-group.com/", "") + "_actual_window.size-" + TestConfig.browserWindowSize();
+        String name = input.replaceAll("https://", "") + "_actual_window.size-" + TestConfig.browserWindowSize();
         name = name.replaceAll("/", "_");
+        name = name.replaceAll("\\?", "");
         return name;
     }
 
     public static String getDifferenceScreenshotTitle(String input) {
-        String name = input.replaceAll("https://www.ukad-group.com/", "") + "_difference_window.size-" + TestConfig.browserWindowSize();
+        String name = input.replaceAll("https://", "") + "_difference_window.size-" + TestConfig.browserWindowSize();
         name = name.replaceAll("/", "_");
+        name = name.replaceAll("\\?", "");
         return name;
     }
 
     public static String getResultScreenshotTitile(String input) {
-        String name = input.replaceAll("https://www.ukad-group.com/", "")
+        String name = input.replaceAll("https://", "")
                 + "_result(actual-expected-difference)_window.size-"
                 + TestConfig.browserWindowSize();
-
         name = name.replaceAll("/", "_");
+        name = name.replaceAll("\\?", "");
         return name;
     }
 
     public static String getResultAdditionalTitle(String input) {
-        String name = input.replaceAll("https://www.ukad-group.com/", "")
+        String name = input.replaceAll("https://", "")
                 + "_resultAdditional(actual-expected-difference)_window.size-"
                 + TestConfig.browserWindowSize();
-
         name = name.replaceAll("/", "_");
+        name = name.replaceAll("\\?", "");
         return name;
     }
 
     public static String getGifTitle(String input) {
-        String name = input.replaceAll("https://www.ukad-group.com/", "")
+        String name = input.replaceAll("https://", "")
                 + "_gif(actual-expected-difference)_window.size-"
                 + TestConfig.browserWindowSize();
-
         name = name.replaceAll("/", "_");
+        name = name.replaceAll("\\?", "");
         return name;
     }
 
@@ -226,7 +230,7 @@ public class CS {
                     AShotFoldersConfiguration.resultDir + "testID-" + testId + "_" + getGifTitle(url) + dateFormat.format(date) + ".gif"
             );
 
-            sendEmailWithResult(testId,url,date);
+            sendEmailWithResult(testId, url, date);
 
             SoftAssert softAssert = new SoftAssert();
             softAssert.assertEquals(diff.getDiffSize(), 0, "Test for the page: '" + url + "' is failed");
@@ -234,7 +238,7 @@ public class CS {
         }
     }
 
-    private static void sendEmailWithResult(String testId, String url,Date date) throws MessagingException {
+    private static void sendEmailWithResult(String testId, String url, Date date) throws MessagingException {
         DateFormat dateFormat = new SimpleDateFormat("_yyyy_MM_dd_HH");
         sendFailedTestsScreenshotViaGmail(AShotFoldersConfiguration.resultDir + "testID-" + testId + "_" + getGifTitle(url) + dateFormat.format(date) + ".gif");
     }

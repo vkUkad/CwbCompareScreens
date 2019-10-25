@@ -30,7 +30,7 @@ public class TestCompareScreens {
         CS.checkIfPagesAreDifferent(CS.getDifference(url.toString()), url.toString(), "0" + number);
     }
 
-    @Test(description = "Creating actual screenshot and comparing screens test#000")
+    @Test(description = "Creating actual screenshot and comparing screens test#001")
     public void compareScreens001() throws Exception {
         int number = 1;
         Object url = URLS().get(number);
@@ -43,7 +43,7 @@ public class TestCompareScreens {
         CS.checkIfPagesAreDifferent(CS.getDifference(url.toString()), url.toString(), "0" + number);
     }
 
-    @Test(description = "Creating actual screenshot and comparing screens test#000")
+    @Test(description = "Creating actual screenshot and comparing screens test#002")
     public void compareScreens002() throws Exception {
         int number = 2;
         Object url = URLS().get(number);
@@ -56,7 +56,7 @@ public class TestCompareScreens {
         CS.checkIfPagesAreDifferent(CS.getDifference(url.toString()), url.toString(), "0" + number);
     }
 
-    @Test(description = "Creating actual screenshot and comparing screens test#000")
+    @Test(description = "Creating actual screenshot and comparing screens test#003")
     public void compareScreens003() throws Exception {
         int number = 3;
         Object url = URLS().get(number);

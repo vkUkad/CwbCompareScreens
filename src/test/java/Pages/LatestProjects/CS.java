@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -118,9 +119,9 @@ public class CS {
         }
     }
 
-    public static void removeElementsFromCreateExpectedScreensPages(String[] by) {
-        for (int i = 0; i < by.length; i++) {
-            String currentElement = by[i];
+    public static void removeElementsFromCreateExpectedScreensPages(ArrayList<String> by) {
+        for (int i = 0; i < by.size(); i++) {
+            String currentElement = by.get(i);
             TestConfig.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
             if (TestConfig.driver.findElements(By.cssSelector(currentElement)).size() != 0) {
                 RemoveElements.removePageElements(By.cssSelector(currentElement));

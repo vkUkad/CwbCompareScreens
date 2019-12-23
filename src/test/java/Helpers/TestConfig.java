@@ -60,10 +60,10 @@ public class TestConfig {
 
     public static ArrayList URLS() {
         ArrayList<String> testingURLs = new ArrayList<String>();
-        testingURLs.add("https://preprod.cowab.com/sv/se");//home page
-        testingURLs.add("https://preprod.cowab.com/sv/se/sok?q=441562&v=637075132991878540");//product listing
-        testingURLs.add("https://preprod.cowab.com/sv/se/omkladningsrum/skap/omkladningsskap/kladskap-pn3178?ic=441562");//regular product page
-        testingURLs.add("https://preprod.cowab.com/sv/se/kontor-konferens/entre-reception/entremattor/entrematta-pn6458?ic=41362");//cut by meter
+        testingURLs.add("https://test.cowab.com/sv/se");//home page
+        testingURLs.add("https://test.cowab.com/sv/se/sok?q=441562&v=637075132991878540");//product listing
+        testingURLs.add("https://test.cowab.com/sv/se/omkladningsrum/skap/omkladningsskap/kladskap-pn3178?ic=441562");//regular product page
+        testingURLs.add("https://test.cowab.com/sv/se/kontor-konferens/entre-reception/entremattor/entrematta-pn6458?ic=41362");//cut by meter
         return testingURLs;
     }
 

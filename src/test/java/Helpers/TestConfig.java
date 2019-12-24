@@ -30,7 +30,7 @@ public class TestConfig {
         options.addArguments("--disable-browser-side-navigation");
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         //hotfix for Chrome 73
-        setRootScreenshotsDir("C:\\CowabSiteTestScreens");
+        setRootScreenshotsDir("C:\\Vikentiy");
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         driver = new ChromeDriver(options);
         driver.manage().window().setSize(new Dimension(1936, 1056));
@@ -96,7 +96,7 @@ public class TestConfig {
         return dir.delete();
     }
 
-    public static void sendFailedTestsScreenshotViaGmail(String screenshotAddress) throws AddressException, MessagingException {
+    public static void sendFailedTestsScreenshotViaGmail(String screenshotAddress) throws MessagingException {
         JavaEmail javaEmail = new JavaEmail();
 
         javaEmail.setMailServerProperties();

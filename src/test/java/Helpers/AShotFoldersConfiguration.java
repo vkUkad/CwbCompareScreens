@@ -12,19 +12,24 @@ public class AShotFoldersConfiguration {
     public static String actualDir;
     public static String diffDir;
     public static String resultDir;
-    public static String[] pathsForScreenshots = new String[5];
+    public static String baseDir;
+    public static String baseDirFullPath;
+    public static String[] pathsForScreenshots = new String[6];
 
     public static void setRootScreenshotsDir(String absolutePath) {
         resourcesImagesDir = absolutePath;
-        expectedDir = resourcesImagesDir + "/expected/";
-        actualDir = resourcesImagesDir + "/actual/";
-        diffDir = resourcesImagesDir + "/diff/";
-        resultDir = resourcesImagesDir + "/result/";
+        baseDir = "/CowabSiteTestScreens/";
+        baseDirFullPath = resourcesImagesDir + "/CowabSiteTestScreens/";
+        expectedDir = baseDirFullPath + "/expected/";
+        actualDir = baseDirFullPath + "/actual/";
+        diffDir = baseDirFullPath + "/diff/";
+        resultDir = baseDirFullPath + "/result/";
         pathsForScreenshots[0] = resourcesImagesDir;
-        pathsForScreenshots[1] = expectedDir;
-        pathsForScreenshots[2] = actualDir;
-        pathsForScreenshots[3] = diffDir;
-        pathsForScreenshots[4] = resultDir;
+        pathsForScreenshots[1] = baseDirFullPath;
+        pathsForScreenshots[2] = expectedDir;
+        pathsForScreenshots[3] = actualDir;
+        pathsForScreenshots[4] = diffDir;
+        pathsForScreenshots[5] = resultDir;
         createFolders();// Метод который проверяет наличие папок file.exists() , в случае их отсутствия - создает (file.mkdirs())
     }
 
